@@ -21,7 +21,15 @@ export const SERVICE_OPTIONS = [
   { value: 'full_package' as QuoteServiceType, label: 'Full House Exterior Makeover' },
 ];
 
-export const SERVICE_DETAILS = [
+interface ServiceDetail {
+  title: string;
+  description: string;
+  image: string;
+  isSplit: boolean;
+  overlay?: string;
+}
+
+export const SERVICE_DETAILS: ServiceDetail[] = [
   {
     title: 'House Washing',
     description:
