@@ -15,7 +15,10 @@ export default function ServicesView({ setIsQuoteModalOpen }: ServicesViewProps)
       </div>
 
       <div className="space-y-16">
-        {SERVICE_DETAILS.map((service, idx) => (
+        {SERVICE_DETAILS.map((service, idx) => {
+          const overlayClass = 'overlay' in service ? (service as { overlay?: string }).overlay ?? '' : '';
+
+          return (
           <div key={service.title} className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div className={`md:col-span-5 space-y-4 ${idx % 2 === 1 ? 'md:order-2' : 'md:order-1'}`}>
               <div className="flex items-center space-x-3">
@@ -53,13 +56,14 @@ export default function ServicesView({ setIsQuoteModalOpen }: ServicesViewProps)
                     : undefined
                 }
                 isSplitImage={service.isSplit}
-                dirtyOverlayClass={service.overlay ?? ''}
+                dirtyOverlayClass={overlayClass}
                 title={service.title}
                 aspectRatio="aspect-video"
               />
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
