@@ -109,19 +109,52 @@ export default function HomeView({ setCurrentPage, setIsQuoteModalOpen }: HomeVi
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             { src: '/assets/house_siding_beforeafter.png', label: 'House Siding Wash' },
-            { src: '/assets/driveway_clean_beforeafter.png', label: 'Driveway Cleaning' },
+            {
+              label: 'Driveway Cleaning',
+              beforeImageUrl: '/assets/driveway_before.png',
+              afterImageUrl: '/assets/driveway_after.png',
+            },
             { src: '/assets/composite_deck_washed.jpg', label: 'Deck Restoration' },
             { src: '/assets/concrete_patio_beforeafter.jpg', label: 'Patio Renewal' },
             { src: '/assets/patio_dirt_washing.png', label: 'Stone Path Cleaning' },
             { src: '/assets/bricksteps_beforeafter.jpg', label: 'Brick Steps Before & After' },
-            { src: '/assets/front_walkway_beforeafter.jpg', label: 'Front Walkway' },
+            {
+              label: 'Front Walkway',
+              beforeImageUrl: '/assets/front_walkway_before.jpg',
+              afterImageUrl: '/assets/front_walkway_after.jpg',
+            },
             { src: '/assets/brick_chimney_beforeafter.png', label: 'Chimney Cleaning' },
-          ].map((item) => (
-            <div key={item.src} className="overflow-hidden rounded-3xl border border-gray-200 shadow-sm bg-white">
-              <img src={item.src} alt={item.label} className="h-48 w-full object-cover transition-transform duration-300 hover:scale-105" />
-              <div className="p-3 text-xs font-semibold uppercase tracking-widest text-gray-600">{item.label}</div>
-            </div>
-          ))}
+          ].map((item) => {
+            const hasBeforeAfter = Boolean(item.beforeImageUrl && item.afterImageUrl);
+            const beforeImageUrl = item.beforeImageUrl ?? '';
+            const afterImageUrl = item.afterImageUrl ?? '';
+
+            return (
+              <div key={item.label} className="overflow-hidden rounded-3xl border border-gray-200 shadow-sm bg-white">
+                {hasBeforeAfter ? (
+                  <div className="p-2">
+                    <div className="grid grid-cols-2 gap-1 overflow-hidden rounded-2xl border border-gray-200 bg-gray-50">
+                      <div className="relative aspect-square overflow-hidden">
+                        <img src={beforeImageUrl} alt={`${item.label} before`} className="h-full w-full object-cover" />
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-2 py-2 text-[10px] font-semibold uppercase tracking-wider text-white text-center">
+                          Before
+                        </div>
+                      </div>
+                      <div className="relative aspect-square overflow-hidden">
+                        <img src={afterImageUrl} alt={`${item.label} after`} className="h-full w-full object-cover" />
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-2 py-2 text-[10px] font-semibold uppercase tracking-wider text-white text-center">
+                          After
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <img src={item.src} alt={item.label} className="h-48 w-full object-cover transition-transform duration-300 hover:scale-105" />
+                )}
+                <div className="p-3 text-xs font-semibold uppercase tracking-widest text-gray-600">{item.label}</div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
