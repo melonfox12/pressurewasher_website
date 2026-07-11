@@ -171,9 +171,14 @@ export default function App() {
             <div className="space-y-3">
               <h4 className="font-bold text-base text-gray-900">Location</h4>
               <p className="text-gray-600">(413) 273 - 6536</p>
-              <p className="text-gray-600 hover:text-[#FF5A24] transition-colors">
-                <a href="/privacy policy.html">Privacy Policy</a>
-              </p>
+              <div className="space-y-2">
+                <p className="text-gray-600 hover:text-[#FF5A24] transition-colors">
+                  <a href="/privacy policy.html">Privacy Policy</a>
+                </p>
+                <p className="text-gray-600 hover:text-[#FF5A24] transition-colors">
+                  <a href="/not qulaified.html">Not Qualified</a>
+                </p>
+              </div>
               <div className="pt-2 flex items-center space-x-1 text-[#FF5A24]">
                 <MapPin size={16} />
                 <span className="font-medium text-xs">Enfield, CT & Surrounding Areas</span>
